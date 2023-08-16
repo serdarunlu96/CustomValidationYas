@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Musteri>
+@{
+    ViewBag.Title = "Musteriler";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Mesaj))
+{
+    <div class="alert alert-success">@ViewBag.Mesaj</div>
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Musteriler</h1>
+    <a asp-action="Yeni" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i>
+    </a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.FotoAd)</th>
+            <th>@Html.DisplayNameFor(x => x.Id)</th>
+            <th>@Html.DisplayNameFor(x => x.Ad)</th>
+            <th>@Html.DisplayNameFor(x => x.DogumTarihi)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Musteri m in Model)
+        {
+            <tr>
+                <td valign="middle"><img src="~/img/@m.FotoAd" alt="@m.Ad" width="32" height="32"></img></td>
+                <td valign="middle">@m.Id</td>
+                <td valign="middle">@m.Ad</td>
+                <td valign="middle">@m.DogumTarihi?.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
